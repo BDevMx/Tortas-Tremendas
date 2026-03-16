@@ -1,0 +1,1083 @@
+/* =============================================
+   GENERAL
+============================================= */
+
+html{
+  scroll-behavior: smooth;
+overflow-x: hidden;
+}
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background-color: #0d0d0d;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3C!-- torta/bolillo --%3E%3Cellipse cx='22' cy='18' rx='14' ry='6' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3Cellipse cx='22' cy='18' rx='10' ry='3.5' fill='none' stroke='%23ffffff' stroke-width='0.7' opacity='0.06'/%3E%3C!-- tomate --%3E%3Ccircle cx='80' cy='15' r='7' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3Cline x1='80' y1='8' x2='80' y2='5' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3C!-- chile --%3E%3Cpath d='M130 10 Q138 20 134 32' fill='none' stroke='%23ffffff' stroke-width='1.2' opacity='0.07'/%3E%3C!-- aguacate --%3E%3Cellipse cx='145' cy='55' rx='7' ry='11' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3Cellipse cx='145' cy='57' rx='3.5' ry='5' fill='none' stroke='%23ffffff' stroke-width='0.8' opacity='0.05'/%3E%3C!-- hoja --%3E%3Cpath d='M55 45 Q65 38 68 50 Q58 54 55 45Z' fill='none' stroke='%23ffffff' stroke-width='0.9' opacity='0.07'/%3E%3C!-- torta 2 --%3E%3Cellipse cx='110' cy='80' rx='16' ry='7' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3Cellipse cx='110' cy='80' rx='12' ry='4' fill='none' stroke='%23ffffff' stroke-width='0.7' opacity='0.05'/%3E%3C!-- cebolla circulo --%3E%3Ccircle cx='28' cy='90' r='6' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3Ccircle cx='28' cy='90' r='3' fill='none' stroke='%23ffffff' stroke-width='0.7' opacity='0.05'/%3E%3C!-- chile 2 --%3E%3Cpath d='M68 100 Q75 112 70 122' fill='none' stroke='%23ffffff' stroke-width='1.2' opacity='0.07'/%3E%3C!-- tomate 2 --%3E%3Ccircle cx='145' cy='120' r='7' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3Cline x1='145' y1='113' x2='145' y2='110' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3C!-- bolillo 3 --%3E%3Cellipse cx='35' cy='145' rx='13' ry='5.5' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3C!-- hoja 2 --%3E%3Cpath d='M100 135 Q110 128 113 140 Q103 144 100 135Z' fill='none' stroke='%23ffffff' stroke-width='0.9' opacity='0.07'/%3E%3C/svg%3E");
+background-size: 160px 160px;
+background-repeat: repeat;
+color:white;
+text-align:center;
+}
+
+/* Salida suave al navegar */
+body.page-exit {
+  animation: pageExit 0.3s ease forwards;
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pageExit {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(-40px); }
+}
+
+header {
+  padding: 40px;
+}
+
+h1 {
+  color: #ffb300;
+  font-size: 48px;
+  letter-spacing: 2px;
+}
+
+p {
+  color: #ddd;
+  font-size: 18px;
+}
+
+/* =============================================
+   NAVBAR
+============================================= */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px 12px 16px;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffb300;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+  font-family: Arial Black, Arial, sans-serif;
+}
+
+.logo-tre {
+  color: #e53935;
+  /* Misma fuente y peso que .logo — no sobreescribir para evitar diferencia de ancho */
+  letter-spacing: inherit;
+}
+
+
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+/* nav-toggle visible solo en móvil — oculto en desktop */
+.nav-toggle {
+  display: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ffb300;
+}
+
+
+.nav-pedir {
+  background: #25D366;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.nav-pedir:hover {
+  transform: scale(1.05);
+}
+
+/* =============================================
+   BOTONES
+============================================= */
+
+.botones {
+  margin: 40px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  margin: 10px;
+  background: #ffb300;
+  color: black;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+  border: none;
+  font-size: 15px;
+}
+
+.btn:hover {
+  background: #ffd54f;
+  transform: scale(1.05);
+}
+
+.whatsapp {
+  background: #25D366 !important;
+  color: white !important;
+}
+
+.whatsapp:hover {
+  background: #1ebe5d !important;
+}
+
+/* =============================================
+   TORTA HERO
+============================================= */
+
+.torta-container {
+  width: 420px;
+  height: 420px;
+  margin: 40px auto;
+  background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  transition: 0.3s;
+}
+
+.torta-container:hover {
+  transform: scale(1.05);
+}
+
+.hero-torta {
+  width: 320px;
+  filter: drop-shadow(0px 15px 20px rgba(0,0,0,0.6));
+}
+
+/* =============================================
+   SECCIONES INFO
+============================================= */
+
+.horario, .contacto {
+  margin-top: 60px;
+  padding: 30px;
+  background: #1a1a1a;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.horario h2, .contacto h2 {
+  color: #ffb300;
+  margin-bottom: 15px;
+}
+
+.contacto-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+  margin-top: 14px;
+}
+
+.facebook-btn {
+  background: #1877F2;
+  color: white !important;
+}
+
+.facebook-btn:hover {
+  background: #2d8cf0 !important;
+  transform: scale(1.05);
+}
+
+.ubicacion {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.ubicacion h2 {
+  color: #ffb300;
+  margin-bottom: 20px;
+}
+
+.ubicacion iframe {
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  display: block;
+  margin: 0 auto;
+}
+
+.maps-btn {
+  display: inline-block;
+  margin-top: 16px;
+  background: #4285F4;
+  color: white;
+}
+
+.maps-btn:hover {
+  background: #5a95f5;
+  transform: scale(1.05);
+}
+
+/* =============================================
+   TABS DEL MENÚ
+============================================= */
+
+.menu-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 0 28px;
+}
+
+.menu-tab {
+  padding: 10px 28px;
+  border-radius: 99px;
+  border: 1.5px solid #333;
+  background: transparent;
+  color: #aaa;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.menu-tab.activo {
+  background: #ffb300;
+  border-color: #ffb300;
+  color: black;
+}
+
+.menu-tab:not(.activo):hover {
+  border-color: #ffb300;
+  color: #ffb300;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 0 16px;
+  max-width: 700px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* =============================================
+   SELECTOR DE ENTREGA
+============================================= */
+
+.entrega-selector {
+  padding: 12px 16px 10px;
+  border-top: 1px solid #2a2a2a;
+  border-bottom: 1px solid #2a2a2a;
+  background: #111;
+  /* No display:none - siempre visible */
+}
+
+.entrega-label {
+  font-size: 13px;
+  color: #aaa;
+  margin: 0 0 8px;
+  text-align: center;
+}
+
+.entrega-opciones {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.entrega-btn {
+  flex: 1;
+  padding: 9px 8px;
+  border-radius: 10px;
+  border: 1.5px solid #333;
+  background: transparent;
+  color: #aaa;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.entrega-btn.activo {
+  background: #ffb300;
+  border-color: #ffb300;
+  color: black;
+}
+
+.entrega-btn:not(.activo):hover {
+  border-color: #ffb300;
+  color: #ffb300;
+}
+
+.entrega-nota {
+  font-size: 12px;
+  color: #ffb300;
+  margin: 0;
+  text-align: center;
+}
+
+/* =============================================
+   RESUMEN DEL CARRITO
+============================================= */
+
+.carrito-resumen {
+  margin-bottom: 14px;
+  border-top: 1px solid #2a2a2a;
+  padding-top: 12px;
+}
+
+.carrito-resumen-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #aaa;
+  padding: 3px 0;
+}
+
+.carrito-resumen-row.total-row {
+  color: white;
+  font-size: 18px;
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid #2a2a2a;
+}
+
+/* =============================================
+   MENÚ
+============================================= */
+
+.menu-header {
+  padding: 24px 14px 16px;
+}
+
+.menu-container {
+  margin: 20px auto 120px;
+  max-width: 1100px;
+  width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+@media (min-width: 769px) {
+  .menu-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+    max-width: 1100px;
+  }
+  #grid-bebidas {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .torta-card {
+    padding: 22px 16px;
+  }
+}
+
+/* Bebidas siempre 2 columnas en móvil */
+@media (max-width: 768px) {
+  #grid-bebidas {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+.torta-card {
+  background: #1e1e1e;
+  padding: 18px 14px;
+  border-radius: 12px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #2a2a2a;
+  box-sizing: border-box;
+}
+
+.torta-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(255,179,0,0.2);
+  border-color: #ffb30033;
+}
+
+.torta-card.especial {
+  border: 2px solid #ffb300;
+  background: #1e1a0e;
+}
+
+.torta-card h2 {
+  color: #ffb000;
+  font-size: 17px;
+  word-wrap: break-word;
+  margin-bottom: 8px;
+}
+
+.torta-card .precio {
+  color: #ddd;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 8px 0 16px;
+}
+
+.btn-agregar {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #25D366;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 13px;
+  transition: 0.2s;
+  pointer-events: none;
+}
+
+.torta-card:hover .btn-agregar {
+  background: #1ebe5d;
+}
+
+/* =============================================
+   MODAL
+============================================= */
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 2000;
+  overflow: hidden;
+}
+
+.modal-overlay.activo {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 16px 16px;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal {
+  background: #1a1a1a;
+  border-radius: 20px;
+  padding: 26px 22px 30px;
+  max-width: 520px;
+  width: calc(100% - 56px);
+  max-height: 78vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  animation: slideUp 0.25s ease;
+  text-align: left;
+  margin: 0;
+  flex-shrink: 0;
+  box-shadow: 0 -6px 28px rgba(0,0,0,0.6);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.modal-cerrar {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.modal-cerrar:hover { color: white; }
+
+.modal h2 {
+  color: #ffb300;
+  margin: 0 0 4px;
+}
+
+.modal-precio {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  margin: 0 0 20px;
+}
+
+.modal h4 {
+  color: #ffb300;
+  margin: 16px 0 8px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ingredientes-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.chip-label {
+  cursor: pointer;
+}
+
+.chip-label input {
+  display: none;
+}
+
+.chip {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: 0.2s;
+  user-select: none;
+}
+
+.chip-ing {
+  background: #2a2a2a;
+  border: 1.5px solid #ffb30066;
+  color: #ffb300;
+}
+
+.chip-ext {
+  background: #2a2a2a;
+  border: 1.5px solid #25D36666;
+  color: #25D366;
+}
+
+/* Desmarcado = tachado */
+.chip-label input:not(:checked) + .chip-ing {
+  background: #111;
+  border-color: #444;
+  color: #555;
+  text-decoration: line-through;
+}
+
+/* Marcado extra = resaltado */
+.chip-label input:checked + .chip-ext {
+  background: #1a3d27;
+  border-color: #25D366;
+  color: #25D366;
+}
+
+.modal-notas textarea {
+  width: 100%;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: white;
+  padding: 10px;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 60px;
+  box-sizing: border-box;
+  margin-top: 6px;
+}
+
+.agregar-carrito-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 12px;
+  background: #ffb300;
+  color: black;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.agregar-carrito-btn:hover {
+  background: #ffd54f;
+}
+
+/* =============================================
+   CARRITO FLOTANTE
+============================================= */
+
+.carrito-flotante {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 1500;
+}
+
+.carrito-btn {
+  background: #ffb300;
+  color: black;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.carrito-btn:hover {
+  transform: scale(1.08);
+  background: #ffd54f;
+}
+
+/* Pantalla completa desde abajo */
+.carrito-panel {
+  position: fixed;
+  right: -100%;
+  top: 0;
+  width: 55%;
+  min-width: 300px;
+  max-width: 420px;
+  height: 100vh;
+  background: #111;
+  z-index: 1600;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -4px 0 30px rgba(0,0,0,0.7);
+  transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Overlay semitransparente detrás del carrito */
+.carrito-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1599;
+}
+
+.carrito-overlay.activo {
+  display: block;
+}
+
+.carrito-panel.abierto {
+  right: 0;
+}
+
+.carrito-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.carrito-header h3 {
+  color: #ffb300;
+  margin: 0;
+  font-size: 20px;
+}
+
+.carrito-cerrar {
+  background: none;
+  border: none;
+  color: #ffb300;
+  font-size: 32px;
+  cursor: pointer;
+  transition: color 0.2s;
+  line-height: 1;
+  padding: 0;
+  font-weight: bold;
+}
+
+.carrito-cerrar:hover { color: white; }
+
+.carrito-items {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px 16px;
+}
+
+.carrito-vacio {
+  color: #555;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 15px;
+}
+
+.carrito-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px solid #1e1e1e;
+  text-align: left;
+}
+
+.carrito-item-info {
+  flex: 1;
+}
+
+.carrito-item-info strong {
+  color: white;
+  display: block;
+  font-size: 15px;
+}
+
+.carrito-item-precio {
+  color: #ffb300;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.carrito-item-info small {
+  color: #777;
+  font-size: 12px;
+  display: block;
+  margin-top: 3px;
+  line-height: 1.5;
+}
+
+.carrito-item-remove {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 0 0 10px;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.carrito-item-remove:hover { color: #e55; }
+
+.carrito-footer {
+  padding: 16px;
+  border-top: 1px solid #2a2a2a;
+}
+
+.carrito-footer.oculto {
+  display: none;
+}
+
+.carrito-total {
+  font-size: 20px;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.carrito-enviar {
+  width: 100%;
+  margin: 0 0 8px;
+  padding: 14px;
+  font-size: 15px;
+  border-radius: 12px;
+}
+
+.carrito-limpiar {
+  width: 100%;
+  background: #1a1a1a;
+  color: #aaa;
+  border: 1px solid #333;
+  margin: 0;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+.carrito-limpiar:hover {
+  background: #222;
+  color: white;
+  transform: none;
+}
+
+/* =============================================
+   FOOTER
+============================================= */
+
+.footer {
+  margin-top: 80px;
+  padding: 30px;
+  background: #000;
+  color: #aaa;
+  font-size: 14px;
+}
+
+.footer p {
+  margin: 5px 0;
+}
+
+
+
+/* =============================================
+   RESPONSIVE
+============================================= */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 16px;
+    gap: 0;
+    position: sticky;
+    top: 0;
+    justify-content: flex-start;
+  }
+
+  .logo {
+    font-size: 16px;
+    flex: 1;
+    text-align: left;
+    margin-right: 0;
+  }
+
+  /* Hamburguesa visible en móvil */
+  .nav-toggle {
+    display: flex !important;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 6px;
+    z-index: 1001;
+    flex-shrink: 0;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #ffb300;
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+
+  /* Nav links — dropdown desde el botón hamburguesa */
+  .nav-links {
+    display: none !important;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    left: auto;
+    width: 220px;
+    background: rgba(18, 18, 18, 0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 16px;
+    padding: 8px;
+    z-index: 1002;
+    list-style: none;
+    margin: 0;
+  }
+
+  .nav-links.abierto {
+    display: flex !important;
+    animation: dropIn 0.22s cubic-bezier(0.4,0,0.2,1);
+    transform-origin: top right;
+  }
+
+  @keyframes dropIn {
+    from { opacity: 0; transform: scale(0.85); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  .nav-links li {
+    border-radius: 10px;
+  }
+
+  .nav-links li + li {
+    margin-top: 2px;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 12px 18px;
+    font-size: 16px;
+    border-radius: 10px;
+    transition: background 0.15s;
+    color: white;
+    text-decoration: none;
+  }
+
+  .nav-links a:hover {
+    background: rgba(255,179,0,0.15);
+    color: #ffb300;
+  }
+
+  /* Las 3 rayitas se convierten en X cuando está abierto */
+  .nav-toggle.abierto span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-toggle.abierto span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .nav-toggle.abierto span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+  .nav-toggle span {
+    transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+
+  .btn, .nav-pedir {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+
+  h1 {
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+
+  .torta-container {
+    width: 240px;
+    height: 240px;
+  }
+
+  .hero-torta {
+    width: 190px;
+  }
+
+  .menu-container {
+    gap: 14px;
+    padding: 0 12px;
+  }
+
+  .torta-card {
+    width: 100%;
+    padding: 14px 10px;
+  }
+
+  .torta-card h2 {
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+
+  .torta-card .precio {
+    font-size: 20px;
+    margin: 6px 0 10px;
+  }
+
+  .menu-grid {
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  /* Modal como cajón desde abajo en móvil */
+  .modal-overlay {
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .modal {
+    max-height: 78vh;
+    animation: sheetUp 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+  }
+
+  @keyframes sheetUp {
+    from { transform: translateY(40%); opacity: 0; }
+    to   { transform: translateY(0);   opacity: 1; }
+  }
+
+  .carrito-flotante {
+    bottom: 18px;
+    right: 18px;
+  }
+
+  .carrito-panel {
+    width: 82vw;
+    min-width: 0;
+    right: -100%;
+  }
+
+  /* Secciones info más angostas */
+  .horario, .contacto {
+    width: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .ubicacion iframe {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .footer {
+    margin-top: 40px;
+    font-size: 13px;
+  }
+}
+
+/* =============================================
+   LOGO TRE EN ROJO
+============================================= */
+
+
+
+/* =============================================
+   BOTÓN ENVIAR DESHABILITADO
+============================================= */
+
+.carrito-enviar.deshabilitado {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background: #555 !important;
+  color: #aaa !important;
+  transform: none !important;
+}
+
+.carrito-total-bloque {
+  margin-bottom: 12px;
+  padding-top: 4px;
+}
