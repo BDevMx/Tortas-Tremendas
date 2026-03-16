@@ -1,3 +1,78 @@
+// =============================================
+//  HORARIO ABIERTO / CERRADO
+// =============================================
+function verificarHorario() {
+  var status = document.getElementById('horario-status');
+  if (!status) return;
+
+  // Hora de México (UTC-6)
+  var now = new Date();
+  var utc = now.getTime() + now.getTimezoneOffset() * 60000;
+  var mexico = new Date(utc + (-6 * 60 * 60000));
+  var dia = mexico.getDay(); // 0=dom, 1=lun...6=sab
+  var hora = mexico.getHours();
+  var min = mexico.getMinutes();
+  var tiempo = hora * 60 + min;
+
+  var abierto = false;
+  var proximoHorario = '';
+
+  if (dia >= 1 && dia <= 5) {
+    // Lunes a Viernes: 9:00 - 21:00
+    abierto = tiempo >= 540 && tiempo < 1260;
+    proximoHorario = abierto ? 'Cierra a las 9:00 PM' : (tiempo < 540 ? 'Abre a las 9:00 AM' : 'Abre mañana a las 9:00 AM');
+  } else if (dia === 6) {
+    // Sábado: 9:00 - 23:00
+    abierto = tiempo >= 540 && tiempo < 1380;
+    proximoHorario = abierto ? 'Cierra a las 11:00 PM' : (tiempo < 540 ? 'Abre a las 9:00 AM' : 'Abre el domingo a la 1:00 PM');
+  } else {
+    // Domingo: 13:00 - 23:00
+    abierto = tiempo >= 780 && tiempo < 1380;
+    proximoHorario = abierto ? 'Cierra a las 11:00 PM' : (tiempo < 780 ? 'Abre a la 1:00 PM' : 'Abre el lunes a las 9:00 AM');
+  }
+
+  status.textContent = abierto ? ('Abierto ahora — ' + proximoHorario) : ('Cerrado — ' + proximoHorario);
+  status.className = 'horario-status ' + (abierto ? 'abierto' : 'cerrado');
+}
+
+// =============================================
+//  COMPARTIR TORTA
+// =============================================
+function compartirTorta(id, nombre, e) {
+  e.stopPropagation();
+  var url = window.location.origin + window.location.pathname + '#torta-' + id;
+  if (navigator.share) {
+    navigator.share({ title: nombre + ' — Tortas Tre\'mendas', url: url });
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(function() { mostrarToast('Link copiado'); });
+  } else {
+    mostrarToast('Link: ' + url);
+  }
+}
+
+function mostrarToast(msg) {
+  var t = document.getElementById('share-toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'share-toast';
+    t.className = 'share-toast';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.classList.add('visible');
+  setTimeout(function() { t.classList.remove('visible'); }, 2500);
+}
+
+// =============================================
+//  CONFIRMACIÓN VISUAL AL AGREGAR
+// =============================================
+function confirmarAgregado() {
+  var btn = document.querySelector('.carrito-btn');
+  if (!btn) return;
+  btn.classList.add('agregado');
+  setTimeout(function() { btn.classList.remove('agregado'); }, 700);
+}
+
 // Siempre iniciar hasta arriba al cargar o recargar
 if (history.scrollRestoration) {
   history.scrollRestoration = 'manual';
@@ -206,6 +281,7 @@ function agregarBebida(id) {
   carrito.push({ tipo:'bebida', nombre:beb.nombre, precio:beb.precio });
   renderCarrito();
   abrirCarrito();
+  confirmarAgregado();
 }
 
 // =============================================
@@ -276,6 +352,7 @@ function agregarAlCarrito() {
   cerrarModalBtn();
   renderCarrito();
   abrirCarrito();
+  confirmarAgregado();
 }
 
 // =============================================
@@ -464,8 +541,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Si la URL tiene ancla al cargar (ej: index.html#horario desde menú), ajustar scroll con offset
   // Si hay ancla ir a esa sección, si no ir hasta arriba siempre
+  verificarHorario();
+
+  // Si la URL tiene #torta-X abrir ese modal
   var hash = window.location.hash;
-  if (hash && hash.length > 1) {
+  if (hash && hash.startsWith('#torta-')) {
+    var tortaId = parseInt(hash.replace('#torta-', ''));
+    if (tortaId) setTimeout(function() { abrirModal(tortaId); }, 500);
+  } else if (hash && hash.length > 1) {
     setTimeout(function() {
       var target = document.querySelector(hash);
       if (target) {
