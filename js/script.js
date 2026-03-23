@@ -111,7 +111,7 @@ var TODOS_INGREDIENTES = [
   "Pechuga en fajita","Chuleta","Pierna natural","Pastor","Carne deshebrada","Salchicha","Huevo",
   "Base de frijol","Base de tomate","Cebolla","Pechuga en BBQ","Piña",
   "Lechuga","Tomate","Aguacate",
-  "Queso de hebra","Queso manchego","Queso amarillo","Tapa fundida de queso de hebra","Tapa fundida de queso de hebra",
+  "Queso de hebra","Queso manchego","Queso amarillo",
   "Pepperoni","Salsa verde de chicharrón en habanero"
 ];
 
