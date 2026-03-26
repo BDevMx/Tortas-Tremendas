@@ -18,17 +18,17 @@ function verificarHorario() {
   var proximoHorario = '';
 
   if (dia >= 1 && dia <= 5) {
-    // Lunes a Viernes: 9:00 - 21:00
-    abierto = tiempo >= 540 && tiempo < 1260;
-    proximoHorario = abierto ? 'Cierra a las 9:00 PM' : (tiempo < 540 ? 'Abre a las 9:00 AM' : 'Abre mañana a las 9:00 AM');
+    // Lunes a Viernes: 10:00 - 21:30
+    abierto = tiempo >= 600 && tiempo < 1290;
+    proximoHorario = abierto ? 'Cierra a las 9:30 PM' : (tiempo < 600 ? 'Abre a las 10:00 AM' : 'Abre mañana a las 10:00 AM');
   } else if (dia === 6) {
-    // Sábado: 9:00 - 23:00
-    abierto = tiempo >= 540 && tiempo < 1380;
-    proximoHorario = abierto ? 'Cierra a las 11:00 PM' : (tiempo < 540 ? 'Abre a las 9:00 AM' : 'Abre el domingo a la 1:00 PM');
+    // Sábado: 10:00 - 23:00
+    abierto = tiempo >= 600 && tiempo < 1380;
+    proximoHorario = abierto ? 'Cierra a las 11:00 PM' : (tiempo < 600 ? 'Abre a las 10:00 AM' : 'Abre el domingo a la 1:00 PM');
   } else {
     // Domingo: 13:00 - 23:00
     abierto = tiempo >= 780 && tiempo < 1380;
-    proximoHorario = abierto ? 'Cierra a las 11:00 PM' : (tiempo < 780 ? 'Abre a la 1:00 PM' : 'Abre el lunes a las 9:00 AM');
+    proximoHorario = abierto ? 'Cierra a las 11:00 PM' : (tiempo < 780 ? 'Abre a la 1:00 PM' : 'Abre el lunes a las 10:00 AM');
   }
 
   status.textContent = abierto ? ('Abierto ahora — ' + proximoHorario) : ('Cerrado — ' + proximoHorario);
@@ -95,9 +95,9 @@ var TORTAS = [
   { id:5,  nombre:"3 Quesos",             precio:50, ingredientes:["Base de frijol","Queso manchego","Queso amarillo","Queso de hebra","Lechuga","Tomate","Aguacate"] },
   { id:6,  nombre:"Bistec de cerdo",      precio:55, ingredientes:["Bistec de cerdo","Cebolla","Base de frijol","Lechuga","Tomate","Aguacate","Tapa fundida de queso de hebra"] },
   { id:7,  nombre:"Chorizo",              precio:50, ingredientes:["Chorizo","Cebolla","Base de frijol","Lechuga","Tomate","Aguacate","Tapa fundida de queso de hebra"] },
-  { id:8,  nombre:"BBQ",                  precio:60, ingredientes:["Pechuga en fajita","Pechuga en BBQ","Lechuga","Tomate","Aguacate","Tapa fundida de queso de hebra"] },
+  { id:8,  nombre:"BBQ",                  precio:60, ingredientes:["Pechuga en fajita","Cebolla en salsa BBQ","Lechuga","Tomate","Aguacate","Tapa fundida de queso de hebra"] },
   { id:9,  nombre:"Cubana",               precio:65, ingredientes:["Jamón","Queso de puerco","Chorizo","Base de frijol","Lechuga","Tomate","Aguacate","Tapa fundida de queso de hebra"] },
-  { id:10, nombre:"Hawaiana",             precio:65, ingredientes:["Chuleta","Cebolla","Piña","Lechuga","Tomate","Aguacate","Base de frijol","Tapa fundida de queso de hebra"] },
+  { id:10, nombre:"Hawaiana",             precio:65, ingredientes:["Chuleta","Cebolla","Piña","Lechuga","Tomate","Aguacate","Base de frijol","Queso de hebra fundido en la tapa"] },
   { id:11, nombre:"Tortipizza",           precio:60, ingredientes:["Base de tomate","Queso manchego","Queso amarillo","Queso de hebra","Pepperoni","Lechuga","Tomate","Aguacate"] },
   { id:12, nombre:"Pollo",                precio:55, ingredientes:["Pollo","Cebolla","Base de frijol","Lechuga","Tomate","Aguacate","Tapa fundida de queso de hebra"] },
   { id:13, nombre:"Milanesa de pollo",    precio:65, ingredientes:["Milanesa de pollo","Base de frijol","Lechuga","Tomate","Aguacate","Tapa fundida de queso de hebra"] },
@@ -109,20 +109,21 @@ var TORTAS = [
 var TODOS_INGREDIENTES = [
   "Jamón","Queso de puerco","Chorizo","Bistec de cerdo","Pollo","Milanesa de pollo",
   "Pechuga en fajita","Chuleta","Pierna natural","Pastor","Carne deshebrada","Salchicha","Huevo",
-  "Base de frijol","Base de tomate","Cebolla","Pechuga en BBQ","Piña",
+  "Base de frijol","Base de tomate","Cebolla","Cebolla en salsa BBQ","Piña",
   "Lechuga","Tomate","Aguacate",
-  "Queso de hebra","Queso manchego","Queso amarillo",
+  "Queso de hebra","Queso manchego","Queso amarillo","Tapa fundida de queso de hebra","Queso de hebra fundido en la tapa",
   "Pepperoni","Salsa verde de chicharrón en habanero"
 ];
 
 var BEBIDAS = [
   { id:101, nombre:"Coca 500ml",          precio:25 },
   { id:102, nombre:"Mundet 500ml",        precio:25 },
-  { id:104, nombre:"Agua Maku Jamaica 500ml",    precio:20 },
-  { id:105, nombre:"Agua Maku Horchata 500ml",   precio:20 },
-  { id:106, nombre:"Agua Maku Guayaba 500ml",    precio:20 },
-  { id:107, nombre:"Agua Maku Maracuyá 500ml",   precio:20 },
-  { id:108, nombre:"Agua Maku Tamarindo 500ml",  precio:20 },
+  { id:103, nombre:"Agua Maku 500ml",     precio:20 },
+  { id:104, nombre:"Jamaica",             precio:18 },
+  { id:105, nombre:"Horchata",            precio:18 },
+  { id:106, nombre:"Guayaba",             precio:18 },
+  { id:107, nombre:"Maracuyá",            precio:18 },
+  { id:108, nombre:"Tamarindo",           precio:18 },
   { id:109, nombre:"Boing Mango 500ml",   precio:22 },
   { id:110, nombre:"Boing Guayaba 500ml", precio:22 },
   { id:111, nombre:"Boing Uva 500ml",     precio:22 },
