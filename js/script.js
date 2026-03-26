@@ -116,19 +116,19 @@ var TODOS_INGREDIENTES = [
 ];
 
 var BEBIDAS = [
-  { id:101, nombre:"Coca 500ml",          precio:25 },
-  { id:102, nombre:"Mundet 500ml",        precio:25 },
+  { id:101, nombre:"Coca 500ml",                          precio:25 },
+  { id:102, nombre:"Mundet 500ml",                        precio:25 },
   { id:104, nombre:"Agua Maku 500ml Jamaica",             precio:20 },
   { id:105, nombre:"Agua Maku 500ml Horchata",            precio:20 },
   { id:106, nombre:"Agua Maku 500ml Guayaba",             precio:20 },
   { id:107, nombre:"Agua Maku 500ml Maracuyá",            precio:20 },
   { id:108, nombre:"Agua Maku 500ml Tamarindo",           precio:20 },
-  { id:109, nombre:"Boing Mango 500ml",   precio:22 },
-  { id:110, nombre:"Boing Guayaba 500ml", precio:22 },
-  { id:111, nombre:"Boing Uva 500ml",     precio:22 },
-  { id:112, nombre:"Boing Manzana 500ml", precio:22 },
-  { id:113, nombre:"Zarza Parrilla 500ml",precio:20 },
-  { id:114, nombre:"Chiva Cola 600ml",    precio:27 }
+  { id:109, nombre:"Boing Mango 500ml",                   precio:22 },
+  { id:110, nombre:"Boing Guayaba 500ml",                 precio:22 },
+  { id:111, nombre:"Boing Uva 500ml",                     precio:22 },
+  { id:112, nombre:"Boing Manzana 500ml",                 precio:22 },
+  { id:113, nombre:"Zarza Parrilla 500ml",                precio:20 },
+  { id:114, nombre:"Chiva Cola 600ml",                    precio:27 }
 ];
 
 var COSTO_EXTRA = 10;
