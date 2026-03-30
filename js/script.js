@@ -18,17 +18,17 @@ function verificarHorario() {
   var proximoHorario = '';
 
   if (dia >= 1 && dia <= 5) {
-    // Lunes a Viernes: 10:00 - 21:30
-    abierto = tiempo >= 600 && tiempo < 1290;
-    proximoHorario = abierto ? 'Cierra a las 9:30 PM' : (tiempo < 600 ? 'Abre a las 10:00 AM' : 'Abre mañana a las 10:00 AM');
+    // Lunes a Viernes: 9:00 - 21:00
+    abierto = tiempo >= 540 && tiempo < 1260;
+    proximoHorario = abierto ? 'Cierra a las 9:00 PM' : (tiempo < 540 ? 'Abre a las 9:00 AM' : 'Abre mañana a las 9:00 AM');
   } else if (dia === 6) {
-    // Sábado: 10:00 - 23:00
-    abierto = tiempo >= 600 && tiempo < 1380;
-    proximoHorario = abierto ? 'Cierra a las 11:00 PM' : (tiempo < 600 ? 'Abre a las 10:00 AM' : 'Abre el domingo a la 1:00 PM');
+    // Sábado: 9:00 - 23:00
+    abierto = tiempo >= 540 && tiempo < 1380;
+    proximoHorario = abierto ? 'Cierra a las 11:00 PM' : (tiempo < 540 ? 'Abre a las 9:00 AM' : 'Abre el domingo a la 1:00 PM');
   } else {
     // Domingo: 13:00 - 23:00
     abierto = tiempo >= 780 && tiempo < 1380;
-    proximoHorario = abierto ? 'Cierra a las 11:00 PM' : (tiempo < 780 ? 'Abre a la 1:00 PM' : 'Abre el lunes a las 10:00 AM');
+    proximoHorario = abierto ? 'Cierra a las 11:00 PM' : (tiempo < 780 ? 'Abre a la 1:00 PM' : 'Abre el lunes a las 9:00 AM');
   }
 
   status.textContent = abierto ? ('Abierto ahora — ' + proximoHorario) : ('Cerrado — ' + proximoHorario);
@@ -84,6 +84,14 @@ window.addEventListener('load', function() {
   }
 });
 
+// Fix bug de flecha atrás en iOS/Android que muestra página en blanco
+window.addEventListener('pageshow', function(e) {
+  if (e.persisted) {
+    // Página restaurada de caché (bfcache) — recargar para evitar estado roto
+    window.location.reload();
+  }
+});
+
 // =============================================
 //  DATOS
 // =============================================
@@ -95,9 +103,9 @@ var TORTAS = [
   { id:5,  nombre:"3 Quesos",             precio:50, ingredientes:["Base de frijol","Queso manchego","Queso amarillo","Queso de hebra","Lechuga","Tomate","Aguacate"] },
   { id:6,  nombre:"Bistec de cerdo",      precio:55, ingredientes:["Bistec de cerdo","Cebolla","Base de frijol","Lechuga","Tomate","Aguacate","Tapa fundida de queso de hebra"] },
   { id:7,  nombre:"Chorizo",              precio:50, ingredientes:["Chorizo","Cebolla","Base de frijol","Lechuga","Tomate","Aguacate","Tapa fundida de queso de hebra"] },
-  { id:8,  nombre:"BBQ",                  precio:60, ingredientes:["Pechuga en fajita","Cebolla en salsa BBQ","Lechuga","Tomate","Aguacate","Tapa fundida de queso de hebra"] },
+  { id:8,  nombre:"BBQ",                  precio:60, ingredientes:["Pechuga en fajita","Pechuga en BBQ","Lechuga","Tomate","Aguacate","Tapa fundida de queso de hebra"] },
   { id:9,  nombre:"Cubana",               precio:65, ingredientes:["Jamón","Queso de puerco","Chorizo","Base de frijol","Lechuga","Tomate","Aguacate","Tapa fundida de queso de hebra"] },
-  { id:10, nombre:"Hawaiana",             precio:65, ingredientes:["Chuleta","Cebolla","Piña","Lechuga","Tomate","Aguacate","Base de frijol","Queso de hebra fundido en la tapa"] },
+  { id:10, nombre:"Hawaiana",             precio:65, ingredientes:["Chuleta","Cebolla","Piña","Lechuga","Tomate","Aguacate","Base de frijol","Tapa fundida de queso de hebra"] },
   { id:11, nombre:"Tortipizza",           precio:60, ingredientes:["Base de tomate","Queso manchego","Queso amarillo","Queso de hebra","Pepperoni","Lechuga","Tomate","Aguacate"] },
   { id:12, nombre:"Pollo",                precio:55, ingredientes:["Pollo","Cebolla","Base de frijol","Lechuga","Tomate","Aguacate","Tapa fundida de queso de hebra"] },
   { id:13, nombre:"Milanesa de pollo",    precio:65, ingredientes:["Milanesa de pollo","Base de frijol","Lechuga","Tomate","Aguacate","Tapa fundida de queso de hebra"] },
@@ -109,26 +117,26 @@ var TORTAS = [
 var TODOS_INGREDIENTES = [
   "Jamón","Queso de puerco","Chorizo","Bistec de cerdo","Pollo","Milanesa de pollo",
   "Pechuga en fajita","Chuleta","Pierna natural","Pastor","Carne deshebrada","Salchicha","Huevo",
-  "Base de frijol","Base de tomate","Cebolla","Cebolla en salsa BBQ","Piña",
+  "Base de frijol","Base de tomate","Cebolla","Pechuga en BBQ","Piña",
   "Lechuga","Tomate","Aguacate",
-  "Queso de hebra","Queso manchego","Queso amarillo","Tapa fundida de queso de hebra","Queso de hebra fundido en la tapa",
+  "Queso de hebra","Queso manchego","Queso amarillo",
   "Pepperoni","Salsa verde de chicharrón en habanero"
 ];
 
 var BEBIDAS = [
-  { id:101, nombre:"Coca 500ml",                          precio:25 },
-  { id:102, nombre:"Mundet 500ml",                        precio:25 },
-  { id:104, nombre:"Agua Maku 500ml Jamaica",             precio:20 },
-  { id:105, nombre:"Agua Maku 500ml Horchata",            precio:20 },
-  { id:106, nombre:"Agua Maku 500ml Guayaba",             precio:20 },
-  { id:107, nombre:"Agua Maku 500ml Maracuyá",            precio:20 },
-  { id:108, nombre:"Agua Maku 500ml Tamarindo",           precio:20 },
-  { id:109, nombre:"Boing Mango 500ml",                   precio:22 },
-  { id:110, nombre:"Boing Guayaba 500ml",                 precio:22 },
-  { id:111, nombre:"Boing Uva 500ml",                     precio:22 },
-  { id:112, nombre:"Boing Manzana 500ml",                 precio:22 },
-  { id:113, nombre:"Zarza Parrilla 500ml",                precio:20 },
-  { id:114, nombre:"Chiva Cola 600ml",                    precio:27 }
+  { id:101, nombre:"Coca 500ml",                   precio:25 },
+  { id:102, nombre:"Mundet 500ml",                 precio:25 },
+  { id:104, nombre:"Agua Maku Jamaica 500ml",      precio:20 },
+  { id:105, nombre:"Agua Maku Horchata 500ml",     precio:20 },
+  { id:106, nombre:"Agua Maku Guayaba 500ml",      precio:20 },
+  { id:107, nombre:"Agua Maku Maracuyá 500ml",     precio:20 },
+  { id:108, nombre:"Agua Maku Tamarindo 500ml",    precio:20 },
+  { id:109, nombre:"Boing Mango 500ml",            precio:22 },
+  { id:110, nombre:"Boing Guayaba 500ml",          precio:22 },
+  { id:111, nombre:"Boing Uva 500ml",              precio:22 },
+  { id:112, nombre:"Boing Manzana 500ml",          precio:22 },
+  { id:113, nombre:"Zarza Parrilla 500ml",         precio:20 },
+  { id:114, nombre:"Chiva Cola 600ml",             precio:27 }
 ];
 
 var COSTO_EXTRA = 10;
@@ -225,6 +233,31 @@ var tipoEntrega = null; // null = sin seleccionar, 'domicilio', 'recoger'
 // =============================================
 //  RENDER MENÚ
 // =============================================
+function mostrarTutorial() {
+  // Solo en menu.html y solo una vez por sesión
+  var pagina = window.location.pathname;
+  if (pagina.indexOf('menu') === -1) return;
+  if (sessionStorage.getItem('tutorial_visto')) return;
+  sessionStorage.setItem('tutorial_visto', '1');
+
+  setTimeout(function() {
+    var hint = document.createElement('div');
+    hint.id = 'tutorial-hint';
+    hint.innerHTML = '<div class="tutorial-box"><span class="tutorial-icon">👆</span><p>Toca cualquier torta para ver ingredientes y personalizar tu pedido</p><button onclick="cerrarTutorial()">Entendido</button></div>';
+    document.body.appendChild(hint);
+    setTimeout(function() { cerrarTutorial(); }, 5000);
+  }, 1200);
+}
+
+function cerrarTutorial() {
+  var h = document.getElementById('tutorial-hint');
+  if (!h) return;
+  h.style.opacity = '0';
+  h.style.transform = 'translateX(-50%) translateY(10px)';
+  h.style.transition = 'opacity 0.3s, transform 0.3s';
+  setTimeout(function() { if (h.parentElement) h.remove(); }, 300);
+}
+
 function renderMenu() {
   var c = document.getElementById('menu-container');
   if (!c) return;
@@ -352,6 +385,8 @@ function agregarAlCarrito() {
   renderCarrito();
   abrirCarrito();
   confirmarAgregado();
+  // Vibración corta en móvil al agregar
+  if (navigator.vibrate) navigator.vibrate(50);
 }
 
 // =============================================
@@ -379,6 +414,11 @@ function abrirCarrito() {
 function renderCarrito() {
   var n = carrito.length;
   document.getElementById('carrito-count').textContent = n;
+  var carritoBtn = document.querySelector('.carrito-btn');
+  if (carritoBtn) {
+    if (n > 0) carritoBtn.classList.add('tiene-items');
+    else carritoBtn.classList.remove('tiene-items');
+  }
 
   var itemsEl = document.getElementById('carrito-items');
   var footer = document.getElementById('carrito-footer');
@@ -486,6 +526,17 @@ function limpiarCarrito() {
 // =============================================
 function enviarPedido() {
   if (!carrito.length || tipoEntrega === null) return;
+  
+  // Feedback visual en el botón
+  var btn = document.getElementById('btn-enviar');
+  if (btn) {
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+    setTimeout(function() {
+      btn.textContent = 'Enviar pedido por WhatsApp';
+      btn.disabled = false;
+    }, 2000);
+  }
 
   var tortas = carrito.filter(function(i) { return i.tipo === 'torta'; });
   var bebidas = carrito.filter(function(i) { return i.tipo === 'bebida'; });
@@ -537,6 +588,15 @@ function enviarPedido() {
 // =============================================
 document.addEventListener('DOMContentLoaded', function() {
   renderMenu();
+  mostrarTutorial();
+
+  // Navbar con sombra al hacer scroll
+  window.addEventListener('scroll', function() {
+    var nav = document.querySelector('.navbar');
+    if (!nav) return;
+    if (window.scrollY > 10) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  }, { passive: true });
 
   // Si la URL tiene ancla al cargar (ej: index.html#horario desde menú), ajustar scroll con offset
   // Si hay ancla ir a esa sección, si no ir hasta arriba siempre
@@ -599,7 +659,11 @@ document.addEventListener('DOMContentLoaded', function() {
           var ancla = dest.split('#')[1];
           if (ancla) {
             var el = document.getElementById(ancla);
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
+            if (el) {
+            var navH = document.querySelector('.navbar') ? document.querySelector('.navbar').offsetHeight : 60;
+            var top = el.getBoundingClientRect().top + window.pageYOffset - navH - 16;
+            window.scrollTo({ top: top, behavior: 'smooth' });
+          }
           } else {
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }
