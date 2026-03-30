@@ -1184,3 +1184,215 @@ p {
   background: #25D366;
   transform: scale(1.12);
 }
+/* =============================================
+   TUTORIAL HINT (primera visita)
+============================================= */
+
+#tutorial-hint {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3000;
+  animation: fadeIn 0.4s ease;
+  width: calc(100% - 40px);
+  max-width: 360px;
+}
+
+.tutorial-box {
+  background: rgba(26, 26, 26, 0.97);
+  border: 1px solid #ffb300;
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+.tutorial-icon {
+  font-size: 28px;
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.tutorial-box p {
+  color: #ddd;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.tutorial-box button {
+  background: #ffb300;
+  color: black;
+  border: none;
+  border-radius: 99px;
+  padding: 8px 24px;
+  font-weight: bold;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* =============================================
+   TABLET (768px - 1024px)
+============================================= */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .menu-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    padding: 0 16px;
+  }
+
+  #grid-bebidas {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .torta-container {
+    width: 320px;
+    height: 320px;
+  }
+
+  .hero-torta {
+    width: 260px;
+  }
+
+  .carrito-panel {
+    width: 45vw;
+    max-width: 380px;
+  }
+
+  .modal {
+    max-width: 500px;
+  }
+}
+
+/* =============================================
+   ANDROID — fondo y color
+============================================= */
+
+@supports not (background-image: url("data:image/svg+xml,<svg/>")) {
+  body {
+    background-color: #0d0d0d;
+  }
+}
+
+/* Forzar fondo oscuro en todos los navegadores */
+body {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Mejorar legibilidad del patrón SVG en Android */
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+  body {
+    background-size: 140px 140px;
+  }
+}
+
+/* =============================================
+   MEJORAS DE FLUIDEZ Y UX
+============================================= */
+
+/* Tarjetas con entrada escalonada */
+.torta-card {
+  animation: cardEntrar 0.4s ease backwards;
+}
+.torta-card:nth-child(1)  { animation-delay: 0.05s; }
+.torta-card:nth-child(2)  { animation-delay: 0.1s; }
+.torta-card:nth-child(3)  { animation-delay: 0.15s; }
+.torta-card:nth-child(4)  { animation-delay: 0.2s; }
+.torta-card:nth-child(5)  { animation-delay: 0.25s; }
+.torta-card:nth-child(6)  { animation-delay: 0.3s; }
+.torta-card:nth-child(7)  { animation-delay: 0.35s; }
+.torta-card:nth-child(8)  { animation-delay: 0.4s; }
+
+@keyframes cardEntrar {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Active state en móvil para tarjetas */
+.torta-card:active {
+  transform: scale(0.97);
+  transition: transform 0.1s;
+}
+
+/* Botón agregar con pulse al hover */
+.btn-agregar {
+  transition: background 0.2s, transform 0.15s;
+}
+
+/* Chips con mejor active */
+.chip-label:active .chip {
+  transform: scale(0.95);
+}
+
+/* Carrito count con animación al cambiar */
+#carrito-count {
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+/* Navbar con sombra sutil al hacer scroll */
+.navbar.scrolled {
+  box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.95);
+}
+
+/* Botón flotante carrito con pulso cuando tiene items */
+.carrito-btn.tiene-items {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 4px 16px rgba(255,179,0,0.3); }
+  50%       { box-shadow: 0 4px 24px rgba(255,179,0,0.6); }
+}
+
+/* Mejorar scrollbar en el carrito y modal */
+.carrito-items::-webkit-scrollbar,
+.modal::-webkit-scrollbar {
+  width: 3px;
+}
+.carrito-items::-webkit-scrollbar-track,
+.modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+.carrito-items::-webkit-scrollbar-thumb,
+.modal::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 99px;
+}
+
+/* Links del navbar con indicador activo */
+.nav-links a.activa {
+  color: #ffb300;
+}
+
+/* Horario status con pulso */
+.horario-status.abierto {
+  animation: statusPulse 3s infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.8; }
+}
+
+/* Tutorial con mejor animación de entrada */
+#tutorial-hint {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3000;
+  transition: opacity 0.3s, transform 0.3s;
+}
