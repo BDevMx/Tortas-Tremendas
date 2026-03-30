@@ -149,7 +149,7 @@ var SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxuHSnWMLHLcolkGTX2Yh9
 //  GUARDAR EN GOOGLE SHEETS
 // =============================================
 function guardarEnSheets(tortas, bebidas, subtotal, envio, total, entrega) {
-  if (!SHEETS_URL || SHEETS_URL === 'PEGA_AQUI_TU_URL_DEL_APPS_SCRIPT') return;
+  if (!SHEETS_URL || SHEETS_URL === 'https://script.google.com/macros/s/AKfycbxuHSnWMLHLcolkGTX2Yh9FPCC8xusOMtyFqn_tSWGt3Yda9F2lQUMo5AvPjqNYY0nP/exec') return;
 
   var tortasTexto = tortas.map(function(t) {
     var partes = [t.nombre];
