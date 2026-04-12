@@ -4,18 +4,18 @@
 
 html{
   scroll-behavior: smooth;
-overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background-color: #0d0d0d;
-background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3C!-- torta/bolillo --%3E%3Cellipse cx='22' cy='18' rx='14' ry='6' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3Cellipse cx='22' cy='18' rx='10' ry='3.5' fill='none' stroke='%23ffffff' stroke-width='0.7' opacity='0.06'/%3E%3C!-- tomate --%3E%3Ccircle cx='80' cy='15' r='7' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3Cline x1='80' y1='8' x2='80' y2='5' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3C!-- chile --%3E%3Cpath d='M130 10 Q138 20 134 32' fill='none' stroke='%23ffffff' stroke-width='1.2' opacity='0.07'/%3E%3C!-- aguacate --%3E%3Cellipse cx='145' cy='55' rx='7' ry='11' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3Cellipse cx='145' cy='57' rx='3.5' ry='5' fill='none' stroke='%23ffffff' stroke-width='0.8' opacity='0.05'/%3E%3C!-- hoja --%3E%3Cpath d='M55 45 Q65 38 68 50 Q58 54 55 45Z' fill='none' stroke='%23ffffff' stroke-width='0.9' opacity='0.07'/%3E%3C!-- torta 2 --%3E%3Cellipse cx='110' cy='80' rx='16' ry='7' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3Cellipse cx='110' cy='80' rx='12' ry='4' fill='none' stroke='%23ffffff' stroke-width='0.7' opacity='0.05'/%3E%3C!-- cebolla circulo --%3E%3Ccircle cx='28' cy='90' r='6' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3Ccircle cx='28' cy='90' r='3' fill='none' stroke='%23ffffff' stroke-width='0.7' opacity='0.05'/%3E%3C!-- chile 2 --%3E%3Cpath d='M68 100 Q75 112 70 122' fill='none' stroke='%23ffffff' stroke-width='1.2' opacity='0.07'/%3E%3C!-- tomate 2 --%3E%3Ccircle cx='145' cy='120' r='7' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3Cline x1='145' y1='113' x2='145' y2='110' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3C!-- bolillo 3 --%3E%3Cellipse cx='35' cy='145' rx='13' ry='5.5' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3C!-- hoja 2 --%3E%3Cpath d='M100 135 Q110 128 113 140 Q103 144 100 135Z' fill='none' stroke='%23ffffff' stroke-width='0.9' opacity='0.07'/%3E%3C/svg%3E");
-background-size: 160px 160px;
-background-repeat: repeat;
-color:white;
-text-align:center;
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background-color: #0d0d0d;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3C!-- torta/bolillo --%3E%3Cellipse cx='22' cy='18' rx='14' ry='6' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3Cellipse cx='22' cy='18' rx='10' ry='3.5' fill='none' stroke='%23ffffff' stroke-width='0.7' opacity='0.06'/%3E%3C!-- tomate --%3E%3Ccircle cx='80' cy='15' r='7' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3Cline x1='80' y1='8' x2='80' y2='5' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3C!-- chile --%3E%3Cpath d='M130 10 Q138 20 134 32' fill='none' stroke='%23ffffff' stroke-width='1.2' opacity='0.07'/%3E%3C!-- aguacate --%3E%3Cellipse cx='145' cy='55' rx='7' ry='11' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3Cellipse cx='145' cy='57' rx='3.5' ry='5' fill='none' stroke='%23ffffff' stroke-width='0.8' opacity='0.05'/%3E%3C!-- hoja --%3E%3Cpath d='M55 45 Q65 38 68 50 Q58 54 55 45Z' fill='none' stroke='%23ffffff' stroke-width='0.9' opacity='0.07'/%3E%3C!-- torta 2 --%3E%3Cellipse cx='110' cy='80' rx='16' ry='7' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3Cellipse cx='110' cy='80' rx='12' ry='4' fill='none' stroke='%23ffffff' stroke-width='0.7' opacity='0.05'/%3E%3C!-- cebolla circulo --%3E%3Ccircle cx='28' cy='90' r='6' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3Ccircle cx='28' cy='90' r='3' fill='none' stroke='%23ffffff' stroke-width='0.7' opacity='0.05'/%3E%3C!-- chile 2 --%3E%3Cpath d='M68 100 Q75 112 70 122' fill='none' stroke='%23ffffff' stroke-width='1.2' opacity='0.07'/%3E%3C!-- tomate 2 --%3E%3Ccircle cx='145' cy='120' r='7' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3Cline x1='145' y1='113' x2='145' y2='110' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3C!-- bolillo 3 --%3E%3Cellipse cx='35' cy='145' rx='13' ry='5.5' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.07'/%3E%3C!-- hoja 2 --%3E%3Cpath d='M100 135 Q110 128 113 140 Q103 144 100 135Z' fill='none' stroke='%23ffffff' stroke-width='0.9' opacity='0.07'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  background-repeat: repeat;
+  color:white;
+  text-align:center;
 }
 
 /* Salida suave al navegar */
@@ -66,8 +66,6 @@ p {
   box-sizing: border-box;
 }
 
-
-
 .logo {
   font-size: 22px;
   font-weight: bold;
@@ -79,11 +77,8 @@ p {
 
 .logo-tre {
   color: #e53935;
-  /* Misma fuente y peso que .logo — no sobreescribir para evitar diferencia de ancho */
   letter-spacing: inherit;
 }
-
-
 
 .nav-links {
   list-style: none;
@@ -93,7 +88,6 @@ p {
   padding: 0;
 }
 
-/* nav-toggle visible solo en móvil — oculto en desktop */
 .nav-toggle {
   display: none;
 }
@@ -108,7 +102,6 @@ p {
 .nav-links a:hover {
   color: #ffb300;
 }
-
 
 .nav-pedir {
   background: #25D366;
@@ -145,6 +138,9 @@ p {
   cursor: pointer;
   border: none;
   font-size: 15px;
+  /* Evitar delays en tap en iOS/Android */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn:hover {
@@ -275,6 +271,8 @@ p {
   font-weight: bold;
   cursor: pointer;
   transition: 0.2s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .menu-tab.activo {
@@ -308,7 +306,6 @@ p {
   border-top: 1px solid #2a2a2a;
   border-bottom: 1px solid #2a2a2a;
   background: #111;
-  /* No display:none - siempre visible */
 }
 
 .entrega-label {
@@ -335,6 +332,10 @@ p {
   font-weight: bold;
   cursor: pointer;
   transition: 0.2s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  /* Altura mínima para facilitar el toque en móvil */
+  min-height: 44px;
 }
 
 .entrega-btn.activo {
@@ -430,6 +431,8 @@ p {
   transition: transform 0.2s, box-shadow 0.2s;
   border: 1px solid #2a2a2a;
   box-sizing: border-box;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .torta-card:hover {
@@ -534,6 +537,13 @@ p {
   font-size: 20px;
   cursor: pointer;
   transition: color 0.2s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-cerrar:hover { color: white; }
@@ -567,6 +577,8 @@ p {
 
 .chip-label {
   cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .chip-label input {
@@ -595,7 +607,6 @@ p {
   color: #25D366;
 }
 
-/* Desmarcado = tachado */
 .chip-label input:not(:checked) + .chip-ing {
   background: #111;
   border-color: #444;
@@ -603,7 +614,6 @@ p {
   text-decoration: line-through;
 }
 
-/* Marcado extra = resaltado */
 .chip-label input:checked + .chip-ext {
   background: #1a3d27;
   border-color: #25D366;
@@ -622,6 +632,8 @@ p {
   min-height: 60px;
   box-sizing: border-box;
   margin-top: 6px;
+  /* Evitar zoom automático en iOS al enfocar */
+  font-size: 16px;
 }
 
 .agregar-carrito-btn {
@@ -636,6 +648,9 @@ p {
   cursor: pointer;
   font-weight: bold;
   transition: 0.2s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 48px;
 }
 
 .agregar-carrito-btn:hover {
@@ -667,6 +682,9 @@ p {
   display: flex;
   align-items: center;
   gap: 6px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 48px;
 }
 
 .carrito-btn:hover {
@@ -674,7 +692,14 @@ p {
   background: #ffd54f;
 }
 
-/* Pantalla completa desde abajo */
+/* =============================================
+   PANEL DEL CARRITO
+   El panel tiene estructura flex column:
+   - carrito-header (fijo arriba)
+   - carrito-items (flex:1, scrolleable)
+   - carrito-footer (scrolleable si hace falta)
+============================================= */
+
 .carrito-panel {
   position: fixed;
   right: -100%;
@@ -683,15 +708,17 @@ p {
   min-width: 300px;
   max-width: 420px;
   height: 100vh;
+  height: 100dvh; /* Dynamic viewport height — mejor en móvil con barra del navegador */
   background: #111;
   z-index: 1600;
   display: flex;
   flex-direction: column;
   box-shadow: -4px 0 30px rgba(0,0,0,0.7);
   transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Evitar que el carrito en sí capture gestos de forma incorrecta */
+  overscroll-behavior: contain;
 }
 
-/* Overlay semitransparente detrás del carrito */
 .carrito-overlay {
   display: none;
   position: fixed;
@@ -714,6 +741,7 @@ p {
   align-items: center;
   padding: 20px 20px 16px;
   border-bottom: 1px solid #2a2a2a;
+  flex-shrink: 0; /* Nunca se encoge */
 }
 
 .carrito-header h3 {
@@ -732,15 +760,39 @@ p {
   line-height: 1;
   padding: 0;
   font-weight: bold;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .carrito-cerrar:hover { color: white; }
 
+/* La lista de items ocupa el espacio flexible y scrollea */
 .carrito-items {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   padding: 12px 16px;
+  /* Scrollbar delgado */
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+}
+
+.carrito-items::-webkit-scrollbar {
+  width: 3px;
+}
+.carrito-items::-webkit-scrollbar-track {
+  background: transparent;
+}
+.carrito-items::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 99px;
 }
 
 .carrito-vacio {
@@ -792,17 +844,57 @@ p {
   padding: 0 0 0 10px;
   transition: color 0.2s;
   flex-shrink: 0;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  min-width: 36px;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .carrito-item-remove:hover { color: #e55; }
 
+/* 
+  El footer NO usa flex:1 ni overflow oculto.
+  Tiene su propio scroll si el contenido (mapa incluido) es muy alto.
+  flex-shrink:0 evita que se achique, pero el panel completo es 100dvh
+  así que si el footer es muy alto, se debe poder scrollear.
+  Solución: footer también tiene overflow-y:auto con altura máxima.
+*/
 .carrito-footer {
-  padding: 16px;
+  flex-shrink: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  /* Máximo 60% del viewport para dejar espacio a los items */
+  max-height: 60vh;
+  max-height: 60dvh;
   border-top: 1px solid #2a2a2a;
+  padding: 0; /* El padding lo manejan los hijos */
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+}
+
+.carrito-footer::-webkit-scrollbar {
+  width: 3px;
+}
+.carrito-footer::-webkit-scrollbar-track {
+  background: transparent;
+}
+.carrito-footer::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 99px;
 }
 
 .carrito-footer.oculto {
   display: none;
+}
+
+/* Padding interior del footer para los elementos que no son el mapa */
+#bloque-subtotal {
+  padding: 12px 16px 0;
 }
 
 .carrito-total {
@@ -817,6 +909,9 @@ p {
   padding: 14px;
   font-size: 15px;
   border-radius: 12px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 48px;
 }
 
 .carrito-limpiar {
@@ -828,12 +923,20 @@ p {
   padding: 10px;
   border-radius: 10px;
   font-size: 13px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 44px;
 }
 
 .carrito-limpiar:hover {
   background: #222;
   color: white;
   transform: none;
+}
+
+/* Botones de enviar y limpiar envueltos en padding */
+.carrito-acciones {
+  padding: 12px 16px 16px;
 }
 
 /* =============================================
@@ -851,8 +954,6 @@ p {
 .footer p {
   margin: 5px 0;
 }
-
-
 
 /* =============================================
    RESPONSIVE
@@ -874,7 +975,6 @@ p {
     margin-right: 0;
   }
 
-  /* Hamburguesa visible en móvil */
   .nav-toggle {
     display: flex !important;
     flex-direction: column;
@@ -885,6 +985,8 @@ p {
     padding: 6px;
     z-index: 1001;
     flex-shrink: 0;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .nav-toggle span {
@@ -896,7 +998,6 @@ p {
     transition: 0.3s;
   }
 
-  /* Nav links — dropdown desde el botón hamburguesa */
   .nav-links {
     display: none !important;
     flex-direction: column;
@@ -950,7 +1051,6 @@ p {
     color: #ffb300;
   }
 
-  /* Las 3 rayitas se convierten en X cuando está abierto */
   .nav-toggle.abierto span:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
   }
@@ -1013,7 +1113,6 @@ p {
     padding: 0 10px;
   }
 
-  /* Modal como cajón desde abajo en móvil */
   .modal-overlay {
     align-items: flex-end;
     justify-content: center;
@@ -1035,13 +1134,19 @@ p {
     right: 18px;
   }
 
+  /* En móvil el carrito ocupa más ancho */
   .carrito-panel {
-    width: 82vw;
+    width: 88vw;
     min-width: 0;
     right: -100%;
   }
 
-  /* Secciones info más angostas */
+  /* En móvil el footer puede crecer más */
+  .carrito-footer {
+    max-height: 70vh;
+    max-height: 70dvh;
+  }
+
   .horario, .contacto {
     width: auto;
     margin-left: 20px;
@@ -1059,11 +1164,13 @@ p {
   }
 }
 
-/* =============================================
-   LOGO TRE EN ROJO
-============================================= */
-
-
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .carrito-panel {
+    width: 45vw;
+    max-width: 420px;
+  }
+}
 
 /* =============================================
    BOTÓN ENVIAR DESHABILITADO
@@ -1080,12 +1187,14 @@ p {
 .carrito-total-bloque {
   margin-bottom: 12px;
   padding-top: 4px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
+
 /* =============================================
    OPTIMIZACIÓN RENDIMIENTO
 ============================================= */
 
-/* Acelerar animaciones con GPU hint */
 .torta-card,
 .carrito-panel,
 .modal,
@@ -1094,7 +1203,6 @@ p {
   will-change: transform, opacity;
 }
 
-/* Reducir animaciones solo si el usuario lo tiene configurado */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -1148,6 +1256,8 @@ p {
   font-size: 14px;
   transition: background 0.2s;
   z-index: 1;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .share-btn:hover {
@@ -1184,215 +1294,188 @@ p {
   background: #25D366;
   transform: scale(1.12);
 }
+
 /* =============================================
-   TUTORIAL HINT (primera visita)
+   SISTEMA DE UBICACIÓN
+   Diseño universal iOS + Android + desktop
 ============================================= */
 
-#tutorial-hint {
-  position: fixed;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3000;
-  animation: fadeIn 0.4s ease;
-  width: calc(100% - 40px);
-  max-width: 360px;
+#ubicacion-panel {
+  border-top: 1px solid #2a2a2a;
+  padding: 14px 16px 8px;
+  animation: fadeIn 0.3s ease;
+  background: #0f0f0f;
 }
 
-.tutorial-box {
-  background: rgba(26, 26, 26, 0.97);
-  border: 1px solid #ffb300;
-  border-radius: 16px;
-  padding: 16px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  text-align: center;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-}
-
-.tutorial-icon {
-  font-size: 28px;
-  animation: bounce 1s infinite;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-.tutorial-box p {
-  color: #ddd;
-  font-size: 14px;
-  margin: 0;
-  line-height: 1.5;
-}
-
-.tutorial-box button {
-  background: #ffb300;
-  color: black;
-  border: none;
-  border-radius: 99px;
-  padding: 8px 24px;
-  font-weight: bold;
+/* Título */
+.ubicacion-titulo {
   font-size: 13px;
+  font-weight: bold;
+  color: #ffb300;
+  margin: 0 0 12px;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+/* 
+  Botón GPS — diseño nativo que funciona igual en iOS y Android.
+  Alto mínimo 48px (recomendado por Apple HIG y Material Design).
+  Sin webkit-appearance para control total del estilo.
+*/
+.btn-ubicacion-gps {
+  width: 100%;
+  padding: 13px 16px;
+  background: #0d2137;
+  color: #fff;
+  border: 1.5px solid #2196F3;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: bold;
   cursor: pointer;
-}
-
-/* =============================================
-   TABLET (768px - 1024px)
-============================================= */
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .menu-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-    padding: 0 16px;
-  }
-
-  #grid-bebidas {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .torta-container {
-    width: 320px;
-    height: 320px;
-  }
-
-  .hero-torta {
-    width: 260px;
-  }
-
-  .carrito-panel {
-    width: 45vw;
-    max-width: 380px;
-  }
-
-  .modal {
-    max-width: 500px;
-  }
-}
-
-/* =============================================
-   ANDROID — fondo y color
-============================================= */
-
-@supports not (background-image: url("data:image/svg+xml,<svg/>")) {
-  body {
-    background-color: #0d0d0d;
-  }
-}
-
-/* Forzar fondo oscuro en todos los navegadores */
-body {
-  -webkit-tap-highlight-color: transparent;
-  -webkit-text-size-adjust: 100%;
-}
-
-/* Mejorar legibilidad del patrón SVG en Android */
-@media screen and (-webkit-min-device-pixel-ratio: 2) {
-  body {
-    background-size: 140px 140px;
-  }
-}
-
-/* =============================================
-   MEJORAS DE FLUIDEZ Y UX
-============================================= */
-
-/* Tarjetas con entrada escalonada */
-.torta-card {
-  animation: cardEntrar 0.4s ease backwards;
-}
-.torta-card:nth-child(1)  { animation-delay: 0.05s; }
-.torta-card:nth-child(2)  { animation-delay: 0.1s; }
-.torta-card:nth-child(3)  { animation-delay: 0.15s; }
-.torta-card:nth-child(4)  { animation-delay: 0.2s; }
-.torta-card:nth-child(5)  { animation-delay: 0.25s; }
-.torta-card:nth-child(6)  { animation-delay: 0.3s; }
-.torta-card:nth-child(7)  { animation-delay: 0.35s; }
-.torta-card:nth-child(8)  { animation-delay: 0.4s; }
-
-@keyframes cardEntrar {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Active state en móvil para tarjetas */
-.torta-card:active {
-  transform: scale(0.97);
-  transition: transform 0.1s;
-}
-
-/* Botón agregar con pulse al hover */
-.btn-agregar {
   transition: background 0.2s, transform 0.15s;
+  margin-bottom: 10px;
+  /* Cross-platform tap */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-sizing: border-box;
+  /* Feedback visual al presionar en móvil */
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-/* Chips con mejor active */
-.chip-label:active .chip {
-  transform: scale(0.95);
+.btn-ubicacion-gps:hover {
+  background: #1565C0;
 }
 
-/* Carrito count con animación al cambiar */
-#carrito-count {
-  display: inline-block;
-  transition: transform 0.2s;
+/* Estado activo (presionado) — funciona en touch y mouse */
+.btn-ubicacion-gps:active {
+  transform: scale(0.97);
+  background: #0d47a1;
 }
 
-/* Navbar con sombra sutil al hacer scroll */
-.navbar.scrolled {
-  box-shadow: 0 2px 20px rgba(0,0,0,0.4);
-  background: rgba(0,0,0,0.95);
+.btn-ubicacion-gps:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
 }
 
-/* Botón flotante carrito con pulso cuando tiene items */
-.carrito-btn.tiene-items {
-  animation: pulse 2s infinite;
+/* Estado confirmado del botón GPS */
+.btn-ubicacion-gps.confirmado {
+  background: #0d2e1a;
+  border-color: #25D366;
+  color: #25D366;
 }
 
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 4px 16px rgba(255,179,0,0.3); }
-  50%       { box-shadow: 0 4px 24px rgba(255,179,0,0.6); }
+/* Hint debajo del botón */
+.ubicacion-hint {
+  font-size: 11px;
+  color: #555;
+  margin: 0 0 10px;
+  text-align: center;
 }
 
-/* Mejorar scrollbar en el carrito y modal */
-.carrito-items::-webkit-scrollbar,
-.modal::-webkit-scrollbar {
+/*
+  Contenedor del mapa Leaflet.
+  touch-action: pan-x pan-y → permite que el mapa haga drag interno
+  pero NO captura el scroll vertical del carrito.
+  scroll-snap-type, etc: ninguno.
+  El truco clave es pointer-events controlado desde JS al entrar/salir del mapa.
+*/
+#mapa-leaflet {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #1e3a5c;
+  margin-bottom: 10px;
+  /* z-index bajo para no interferir con overlays */
+  position: relative;
+  z-index: 1;
+  /* 
+    touch-action: pan-x pan-y permite que el usuario haga scroll
+    en el carrito aun cuando empiece el gesto sobre el mapa.
+    Leaflet internamente maneja sus propios listeners con preventDefault
+    solo cuando detecta interacción intencional con el mapa.
+  */
+  touch-action: pan-x pan-y;
+  /* Sombra sutil que da profundidad */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(33,150,243,0.15);
+}
+
+/* Estado del mapa: sin ubicación seleccionada */
+.ubicacion-status {
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  margin: 0 0 10px;
+  transition: color 0.3s;
+  line-height: 1.4;
+  min-height: 18px;
+}
+
+/* Leaflet — tema oscuro universal */
+.leaflet-container {
+  background: #1a1a1a !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #1a1a1a !important;
+  color: #ffb300 !important;
+  border-radius: 10px !important;
+  font-size: 13px !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5) !important;
+  border: 1px solid #2a2a2a !important;
+}
+
+.leaflet-popup-tip {
+  background: #1a1a1a !important;
+}
+
+.leaflet-control-zoom a {
+  background: #1a1a1a !important;
+  color: #ffb300 !important;
+  border-color: #333 !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: #222 !important;
+  color: #ffd54f !important;
+}
+
+.leaflet-control-attribution {
+  font-size: 9px !important;
+  opacity: 0.4 !important;
+  background: rgba(0,0,0,0.5) !important;
+  color: #aaa !important;
+}
+
+/* Scrollbar general del footer */
+.carrito-footer::-webkit-scrollbar {
   width: 3px;
 }
-.carrito-items::-webkit-scrollbar-track,
-.modal::-webkit-scrollbar-track {
+.carrito-footer::-webkit-scrollbar-track {
   background: transparent;
 }
-.carrito-items::-webkit-scrollbar-thumb,
-.modal::-webkit-scrollbar-thumb {
-  background: #333;
+.carrito-footer::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
   border-radius: 99px;
 }
 
-/* Links del navbar con indicador activo */
-.nav-links a.activa {
-  color: #ffb300;
-}
-
-/* Horario status con pulso */
-.horario-status.abierto {
-  animation: statusPulse 3s infinite;
-}
-
-@keyframes statusPulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.8; }
-}
-
-/* Tutorial con mejor animación de entrada */
-#tutorial-hint {
-  position: fixed;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3000;
-  transition: opacity 0.3s, transform 0.3s;
+/* =============================================
+   ENTREGA - AVISO
+============================================= */
+.entrega-aviso {
+  font-size: 12px;
+  color: #888;
+  margin: 4px 0 0;
+  text-align: center;
+  transition: color 0.3s;
 }
