@@ -5,11 +5,10 @@ function verificarHorario() {
   var status = document.getElementById('horario-status');
   if (!status) return;
 
-  // Hora de México (UTC-6)
   var now = new Date();
   var utc = now.getTime() + now.getTimezoneOffset() * 60000;
   var mexico = new Date(utc + (-6 * 60 * 60000));
-  var dia = mexico.getDay(); // 0=dom, 1=lun...6=sab
+  var dia = mexico.getDay();
   var hora = mexico.getHours();
   var min = mexico.getMinutes();
   var tiempo = hora * 60 + min;
@@ -18,15 +17,12 @@ function verificarHorario() {
   var proximoHorario = '';
 
   if (dia >= 1 && dia <= 5) {
-    // Lunes a Viernes: 9:00 - 21:00
     abierto = tiempo >= 540 && tiempo < 1260;
     proximoHorario = abierto ? 'Cierra a las 9:00 PM' : (tiempo < 540 ? 'Abre a las 9:00 AM' : 'Abre mañana a las 9:00 AM');
   } else if (dia === 6) {
-    // Sábado: 9:00 - 23:00
     abierto = tiempo >= 540 && tiempo < 1380;
     proximoHorario = abierto ? 'Cierra a las 11:00 PM' : (tiempo < 540 ? 'Abre a las 9:00 AM' : 'Abre el domingo a la 1:00 PM');
   } else {
-    // Domingo: 13:00 - 23:00
     abierto = tiempo >= 780 && tiempo < 1380;
     proximoHorario = abierto ? 'Cierra a las 11:00 PM' : (tiempo < 780 ? 'Abre a la 1:00 PM' : 'Abre el lunes a las 9:00 AM');
   }
@@ -71,6 +67,8 @@ function confirmarAgregado() {
   if (!btn) return;
   btn.classList.add('agregado');
   setTimeout(function() { btn.classList.remove('agregado'); }, 700);
+  // Vibración haptic (Android y algunos iOS)
+  if (navigator.vibrate) navigator.vibrate(50);
 }
 
 // Siempre iniciar hasta arriba al cargar o recargar
@@ -84,6 +82,11 @@ window.addEventListener('load', function() {
   }
 });
 
+// Fix flecha atrás iOS (bfcache)
+window.addEventListener('pageshow', function(e) {
+  if (e.persisted) window.location.reload();
+});
+
 // =============================================
 //  DATOS
 // =============================================
@@ -95,7 +98,7 @@ var TORTAS = [
   { id:5,  nombre:"3 Quesos",             precio:50, ingredientes:["Base de frijol","Queso manchego","Queso amarillo","Queso de hebra","Lechuga","Tomate","Aguacate"] },
   { id:6,  nombre:"Bistec de cerdo",      precio:55, ingredientes:["Bistec de cerdo","Cebolla","Base de frijol","Lechuga","Tomate","Aguacate","Tapa fundida de queso de hebra"] },
   { id:7,  nombre:"Chorizo",              precio:50, ingredientes:["Chorizo","Cebolla","Base de frijol","Lechuga","Tomate","Aguacate","Tapa fundida de queso de hebra"] },
-  { id:8,  nombre:"BBQ",                  precio:60, ingredientes:["Pechuga en fajita","Cebolla en salsa BBQ","Lechuga","Tomate","Aguacate","Tapa fundida de queso de hebra"] },
+  { id:8,  nombre:"BBQ",                  precio:60, ingredientes:["Pechuga en fajita","Pechuga en BBQ","Lechuga","Tomate","Aguacate","Tapa fundida de queso de hebra"] },
   { id:9,  nombre:"Cubana",               precio:65, ingredientes:["Jamón","Queso de puerco","Chorizo","Base de frijol","Lechuga","Tomate","Aguacate","Tapa fundida de queso de hebra"] },
   { id:10, nombre:"Hawaiana",             precio:65, ingredientes:["Chuleta","Cebolla","Piña","Lechuga","Tomate","Aguacate","Base de frijol","Queso de hebra fundido en la tapa"] },
   { id:11, nombre:"Tortipizza",           precio:60, ingredientes:["Base de tomate","Queso manchego","Queso amarillo","Queso de hebra","Pepperoni","Lechuga","Tomate","Aguacate"] },
@@ -109,39 +112,38 @@ var TORTAS = [
 var TODOS_INGREDIENTES = [
   "Jamón","Queso de puerco","Chorizo","Bistec de cerdo","Pollo","Milanesa de pollo",
   "Pechuga en fajita","Chuleta","Pierna natural","Pastor","Carne deshebrada","Salchicha","Huevo",
-  "Base de frijol","Base de tomate","Cebolla","Cebolla en salsa BBQ","Piña",
+  "Base de frijol","Base de tomate","Cebolla","Pechuga en BBQ","Piña",
   "Lechuga","Tomate","Aguacate",
-  "Queso de hebra","Queso manchego","Queso amarillo","Tapa fundida de queso de hebra","Queso de hebra fundido en la tapa",
+  "Queso de hebra","Queso manchego","Queso amarillo",
   "Pepperoni","Salsa verde de chicharrón en habanero"
 ];
 
 var BEBIDAS = [
-  { id:101, nombre:"Coca 500ml",          precio:25 },
-  { id:102, nombre:"Mundet 500ml",        precio:25 },
-  { id:104, nombre:"Agua Maku 500ml Jamaica",             precio:20 },
-  { id:105, nombre:"Agua Maku 500ml Horchata",            precio:20 },
-  { id:106, nombre:"Agua Maku 500ml Guayaba",             precio:20 },
-  { id:107, nombre:"Agua Maku 500ml Maracuyá",            precio:20 },
-  { id:108, nombre:"Agua Maku 500ml Tamarindo",           precio:20 },
-  { id:109, nombre:"Boing Mango 500ml",   precio:22 },
-  { id:110, nombre:"Boing Guayaba 500ml", precio:22 },
-  { id:111, nombre:"Boing Uva 500ml",     precio:22 },
-  { id:112, nombre:"Boing Manzana 500ml", precio:22 },
-  { id:113, nombre:"Zarza Parrilla 500ml",precio:20 },
-  { id:114, nombre:"Chiva Cola 600ml",    precio:27 }
+  { id:101, nombre:"Coca 500ml",              precio:25 },
+  { id:102, nombre:"Mundet 500ml",            precio:25 },
+  { id:103, nombre:"Agua Maku Jamaica 500ml", precio:20 },
+  { id:104, nombre:"Agua Maku Horchata 500ml",precio:20 },
+  { id:105, nombre:"Agua Maku Guayaba 500ml", precio:20 },
+  { id:106, nombre:"Agua Maku Maracuyá 500ml",precio:20 },
+  { id:107, nombre:"Agua Maku Tamarindo 500ml",precio:20 },
+  { id:108, nombre:"Boing Mango 500ml",       precio:22 },
+  { id:109, nombre:"Boing Guayaba 500ml",     precio:22 },
+  { id:110, nombre:"Boing Uva 500ml",         precio:22 },
+  { id:111, nombre:"Boing Manzana 500ml",     precio:22 },
+  { id:112, nombre:"Zarza Parrilla 500ml",    precio:20 },
+  { id:113, nombre:"Chiva Cola 600ml",        precio:27 }
 ];
 
 var COSTO_EXTRA = 10;
 var COSTO_ENVIO = 35;
 
-// ← Aquí pegas tu URL del Apps Script después de implementarlo
 var SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxuHSnWMLHLcolkGTX2Yh9FPCC8xusOMtyFqn_tSWGt3Yda9F2lQUMo5AvPjqNYY0nP/exec';
 
 // =============================================
 //  GUARDAR EN GOOGLE SHEETS
 // =============================================
 function guardarEnSheets(tortas, bebidas, subtotal, envio, total, entrega) {
-  if (!SHEETS_URL) return;
+  if (!SHEETS_URL || SHEETS_URL === 'PEGA_AQUI_TU_URL_DEL_APPS_SCRIPT') return;
 
   var tortasTexto = tortas.map(function(t) {
     var partes = [t.nombre];
@@ -152,12 +154,10 @@ function guardarEnSheets(tortas, bebidas, subtotal, envio, total, entrega) {
   }).join('; ');
 
   var bebidasTexto = bebidas.map(function(b) { return b.nombre; }).join(', ');
-
   var extrasTexto = tortas.map(function(t) {
     return t.extras && t.extras.length ? t.nombre + ': ' + t.extras.join(', ') : '';
   }).filter(Boolean).join('; ');
 
-  // Construir URL con parámetros — evita problemas de CORS completamente
   var params = [
     'tortas='    + encodeURIComponent(tortasTexto  || '-'),
     'bebidas='   + encodeURIComponent(bebidasTexto || '-'),
@@ -168,7 +168,6 @@ function guardarEnSheets(tortas, bebidas, subtotal, envio, total, entrega) {
     'entrega='   + encodeURIComponent(entrega === 'domicilio' ? 'Domicilio' : 'Recoger')
   ].join('&');
 
-  // Usar imagen invisible — funciona desde cualquier origen sin CORS
   var img = new Image();
   img.src = SHEETS_URL + '?' + params;
 }
@@ -185,7 +184,6 @@ function toggleNav() {
   } else {
     links.classList.add('abierto');
     if (toggle) toggle.classList.add('abierto');
-    // Cerrar al tocar fuera
     setTimeout(function() {
       document.addEventListener('click', cerrarNavFuera);
     }, 10);
@@ -208,19 +206,19 @@ function cerrarNavFuera(e) {
   }
 }
 
-// Cerrar nav al hacer clic en un link
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.nav-links a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      cerrarNav();
-    });
+    a.addEventListener('click', function() { cerrarNav(); });
   });
 });
 
-
+// =============================================
+//  ESTADO GLOBAL
+// =============================================
 var carrito = [];
 var tortaActual = null;
-var tipoEntrega = null; // null = sin seleccionar, 'domicilio', 'recoger'
+var tipoEntrega = null;
+var ubicacionPedido = null;
 
 // =============================================
 //  RENDER MENÚ
@@ -256,19 +254,19 @@ function renderMenu() {
 }
 
 function cambiarSeccion(sec) {
-  var gtortas = document.getElementById('grid-tortas');
+  var gtortas  = document.getElementById('grid-tortas');
   var gbebidas = document.getElementById('grid-bebidas');
-  var ttortas = document.getElementById('tab-tortas');
+  var ttortas  = document.getElementById('tab-tortas');
   var tbebidas = document.getElementById('tab-bebidas');
   if (sec === 'tortas') {
-    gtortas.style.display = 'grid';
+    gtortas.style.display  = 'grid';
     gbebidas.style.display = 'none';
-    ttortas.className = 'menu-tab activo';
+    ttortas.className  = 'menu-tab activo';
     tbebidas.className = 'menu-tab';
   } else {
-    gtortas.style.display = 'none';
+    gtortas.style.display  = 'none';
     gbebidas.style.display = 'grid';
-    ttortas.className = 'menu-tab';
+    ttortas.className  = 'menu-tab';
     tbebidas.className = 'menu-tab activo';
   }
 }
@@ -309,7 +307,6 @@ function abrirModal(id) {
   document.getElementById('modal-nota').value = '';
   actualizarPrecioModal();
 
-  // Listener en extras para actualizar precio
   var extChecks = document.querySelectorAll('.ext-check');
   for (var j = 0; j < extChecks.length; j++) {
     extChecks[j].onchange = actualizarPrecioModal;
@@ -325,10 +322,7 @@ function actualizarPrecioModal() {
 }
 
 function cerrarModal(e) {
-  // Cerrar si pican fuera del modal (en el overlay oscuro)
-  if (e.target === document.getElementById('modal-overlay')) {
-    cerrarModalBtn();
-  }
+  if (e.target === document.getElementById('modal-overlay')) cerrarModalBtn();
 }
 
 function cerrarModalBtn() {
@@ -358,7 +352,7 @@ function agregarAlCarrito() {
 //  CARRITO
 // =============================================
 function toggleCarrito() {
-  var panel = document.getElementById('carrito-panel');
+  var panel   = document.getElementById('carrito-panel');
   var overlay = document.getElementById('carrito-overlay');
   if (panel.classList.contains('abierto')) {
     panel.classList.remove('abierto');
@@ -370,7 +364,7 @@ function toggleCarrito() {
 }
 
 function abrirCarrito() {
-  var panel = document.getElementById('carrito-panel');
+  var panel   = document.getElementById('carrito-panel');
   var overlay = document.getElementById('carrito-overlay');
   panel.classList.add('abierto');
   if (overlay) overlay.classList.add('activo');
@@ -381,7 +375,7 @@ function renderCarrito() {
   document.getElementById('carrito-count').textContent = n;
 
   var itemsEl = document.getElementById('carrito-items');
-  var footer = document.getElementById('carrito-footer');
+  var footer  = document.getElementById('carrito-footer');
 
   if (n === 0) {
     itemsEl.innerHTML = '<p class="carrito-vacio">Tu carrito está vacío</p>';
@@ -411,12 +405,11 @@ function renderCarrito() {
 
 function actualizarTotal(subtotal) {
   var bloqueTotal = document.getElementById('bloque-total');
-  var filaEnvio = document.getElementById('fila-envio');
-  var btnEnviar = document.getElementById('btn-enviar');
-  var aviso = document.getElementById('entrega-aviso');
+  var filaEnvio   = document.getElementById('fila-envio');
+  var btnEnviar   = document.getElementById('btn-enviar');
+  var aviso       = document.getElementById('entrega-aviso');
 
   if (tipoEntrega === null) {
-    // Sin selección: no mostrar total ni habilitar envío
     bloqueTotal.style.display = 'none';
     btnEnviar.disabled = true;
     btnEnviar.className = 'btn whatsapp carrito-enviar deshabilitado';
@@ -426,42 +419,236 @@ function actualizarTotal(subtotal) {
   }
 
   bloqueTotal.style.display = 'block';
-  btnEnviar.disabled = false;
-  btnEnviar.className = 'btn whatsapp carrito-enviar';
 
   if (tipoEntrega === 'domicilio') {
     filaEnvio.style.display = 'flex';
     document.getElementById('carrito-envio').textContent = '$' + COSTO_ENVIO;
     document.getElementById('carrito-total').textContent = '$' + (subtotal + COSTO_ENVIO);
-    aviso.textContent = 'Envío a domicilio: $' + COSTO_ENVIO;
-    aviso.style.color = '#ffb300';
+    aviso.textContent  = ubicacionPedido ? 'Envío a domicilio: $' + COSTO_ENVIO : 'Selecciona tu ubicación abajo';
+    aviso.style.color  = ubicacionPedido ? '#ffb300' : '#e53935';
+    btnEnviar.disabled = !ubicacionPedido;
+    btnEnviar.className = 'btn whatsapp carrito-enviar' + (!ubicacionPedido ? ' deshabilitado' : '');
   } else {
     filaEnvio.style.display = 'none';
     document.getElementById('carrito-total').textContent = '$' + subtotal;
     aviso.textContent = 'Sin costo de envío';
     aviso.style.color = '#25D366';
+    btnEnviar.disabled = false;
+    btnEnviar.className = 'btn whatsapp carrito-enviar';
   }
 }
 
 function setEntrega(tipo) {
   tipoEntrega = tipo;
-
   var btnDom = document.getElementById('btn-domicilio');
   var btnRec = document.getElementById('btn-recoger');
-
-  // Quitar activo a ambos, luego poner al elegido
   btnDom.className = 'entrega-btn';
   btnRec.className = 'entrega-btn';
 
   if (tipo === 'domicilio') {
     btnDom.className = 'entrega-btn activo';
+    mostrarPanelUbicacion();
   } else {
     btnRec.className = 'entrega-btn activo';
+    ocultarPanelUbicacion();
+    ubicacionPedido = null;
   }
 
-  // Recalcular con subtotal actual
   var subtotal = 0;
   for (var i = 0; i < carrito.length; i++) { subtotal += carrito[i].precio; }
+  actualizarTotal(subtotal);
+}
+
+// =============================================
+//  SISTEMA DE UBICACIÓN — UNIVERSAL iOS/Android
+// =============================================
+var mapaLeaflet    = null;
+var markerLeaflet  = null;
+
+function mostrarPanelUbicacion() {
+  var panel = document.getElementById('ubicacion-panel');
+  if (panel) {
+    panel.style.display = 'block';
+    // Pequeño delay para que el DOM termine de pintar antes de iniciar Leaflet
+    setTimeout(function() { inicializarMapa(); }, 120);
+  }
+}
+
+function ocultarPanelUbicacion() {
+  var panel = document.getElementById('ubicacion-panel');
+  if (panel) panel.style.display = 'none';
+}
+
+function inicializarMapa() {
+  if (mapaLeaflet) {
+    // Si ya existe, solo hacer invalidateSize por si el panel cambió de tamaño
+    setTimeout(function() { mapaLeaflet.invalidateSize(); }, 50);
+    return;
+  }
+
+  var mapDiv = document.getElementById('mapa-leaflet');
+  if (!mapDiv || typeof L === 'undefined') return;
+
+  var lat = 19.4548, lng = -96.9663;
+
+  mapaLeaflet = L.map('mapa-leaflet', {
+    zoomControl:       true,
+    scrollWheelZoom:   false,   // La rueda del mouse NO hace zoom → scrollea el carrito
+    doubleClickZoom:   true,
+    dragging:          true,
+    tap:               true,    // Necesario para iOS
+    tapTolerance:      15,      // Más tolerante en iOS
+    touchZoom:         true,    // Permite pinch-zoom en el mapa
+    bounceAtZoomLimits: false
+  }).setView([lat, lng], 15);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap',
+    maxZoom: 19
+  }).addTo(mapaLeaflet);
+
+  // Marcador arrastrable
+  markerLeaflet = L.marker([lat, lng], { draggable: true }).addTo(mapaLeaflet);
+  markerLeaflet.bindPopup('📍 Arrastra para ajustar').openPopup();
+
+  markerLeaflet.on('dragend', function() {
+    var pos = markerLeaflet.getLatLng();
+    guardarUbicacion(pos.lat, pos.lng);
+  });
+
+  mapaLeaflet.on('click', function(e) {
+    markerLeaflet.setLatLng(e.latlng);
+    guardarUbicacion(e.latlng.lat, e.latlng.lng);
+  });
+
+  // ---- FIX SCROLL UNIVERSAL ----
+  // En iOS/Android: cuando el usuario arrastra sobre el mapa con intención
+  // de scrollear el carrito, Leaflet puede capturar el evento.
+  // Solución: detectamos si el gesto es principalmente vertical (scroll)
+  // y en ese caso deshabilitamos temporalmente el drag del mapa.
+  var mapEl       = mapDiv;
+  var touchStartY = 0;
+  var touchStartX = 0;
+  var mapaArrastrando = false;
+
+  mapEl.addEventListener('touchstart', function(e) {
+    if (e.touches.length === 1) {
+      touchStartY = e.touches[0].clientY;
+      touchStartX = e.touches[0].clientX;
+      mapaArrastrando = false;
+    }
+  }, { passive: true });
+
+  mapEl.addEventListener('touchmove', function(e) {
+    if (e.touches.length !== 1) return;
+    var dy = Math.abs(e.touches[0].clientY - touchStartY);
+    var dx = Math.abs(e.touches[0].clientX - touchStartX);
+
+    // Si el movimiento es más vertical que horizontal y todavía no
+    // empezó a arrastrar el mapa → permitir scroll del carrito
+    if (!mapaArrastrando && dy > dx && dy > 8) {
+      // Deshabilitar drag del mapa temporalmente para este gesto
+      if (mapaLeaflet.dragging.enabled()) {
+        mapaLeaflet.dragging.disable();
+      }
+    } else if (!mapaArrastrando && dx > dy && dx > 8) {
+      // Movimiento horizontal → es drag del mapa
+      mapaArrastrando = true;
+      if (!mapaLeaflet.dragging.enabled()) {
+        mapaLeaflet.dragging.enable();
+      }
+    }
+  }, { passive: true });
+
+  mapEl.addEventListener('touchend', function() {
+    // Siempre restaurar dragging al soltar
+    setTimeout(function() {
+      if (mapaLeaflet && !mapaLeaflet.dragging.enabled()) {
+        mapaLeaflet.dragging.enable();
+      }
+      mapaArrastrando = false;
+    }, 50);
+  }, { passive: true });
+
+  // Forzar redibujado por si el panel tenía display:none al inicializar
+  setTimeout(function() { mapaLeaflet.invalidateSize(); }, 200);
+}
+
+function usarMiUbicacion() {
+  var btn = document.getElementById('btn-mi-ubicacion');
+  if (btn) {
+    btn.textContent = '📡 Detectando...';
+    btn.disabled = true;
+    btn.classList.remove('confirmado');
+  }
+
+  if (!navigator.geolocation) {
+    alert('Tu navegador no soporta GPS. Usa la opción de mapa.');
+    if (btn) { btn.textContent = '📍 Usar mi ubicación'; btn.disabled = false; }
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    function(pos) {
+      var lat = pos.coords.latitude;
+      var lng = pos.coords.longitude;
+
+      if (!mapaLeaflet) {
+        inicializarMapa();
+        setTimeout(function() { centrarMapaEnUbicacion(lat, lng, btn); }, 300);
+      } else {
+        centrarMapaEnUbicacion(lat, lng, btn);
+      }
+    },
+    function(err) {
+      var msg = err.code === 1
+        ? 'Permiso denegado. Activa el GPS en tu navegador y recarga.'
+        : 'No se pudo detectar tu ubicación. Toca el mapa para elegirla.';
+      alert(msg);
+      if (btn) { btn.textContent = '📍 Usar mi ubicación'; btn.disabled = false; }
+    },
+    { enableHighAccuracy: true, timeout: 12000, maximumAge: 0 }
+  );
+}
+
+function centrarMapaEnUbicacion(lat, lng, btn) {
+  mapaLeaflet.setView([lat, lng], 17);
+  markerLeaflet.setLatLng([lat, lng]);
+  guardarUbicacion(lat, lng);
+  if (btn) {
+    btn.textContent = '✅ Ubicación detectada';
+    btn.disabled = false;
+    btn.classList.add('confirmado');
+  }
+}
+
+function guardarUbicacion(lat, lng) {
+  ubicacionPedido = {
+    lat:     lat.toFixed(6),
+    lng:     lng.toFixed(6),
+    mapsUrl: 'https://maps.google.com/?q=' + lat.toFixed(6) + ',' + lng.toFixed(6)
+  };
+
+  var aviso = document.getElementById('ubicacion-confirmada');
+  if (aviso) {
+    aviso.textContent = '✅ Ubicación lista — ajusta el pin si es necesario';
+    aviso.style.color = '#25D366';
+  }
+
+  actualizarBtnEnviar();
+
+  // Actualizar también el aviso del selector de entrega
+  var avisoEntrega = document.getElementById('entrega-aviso');
+  if (avisoEntrega && tipoEntrega === 'domicilio') {
+    avisoEntrega.textContent = 'Envío a domicilio: $' + COSTO_ENVIO;
+    avisoEntrega.style.color = '#ffb300';
+  }
+}
+
+function actualizarBtnEnviar() {
+  var btn = document.getElementById('btn-enviar');
+  if (!btn) return;
+  var subtotal = carrito.reduce(function(s, i) { return s + i.precio; }, 0);
   actualizarTotal(subtotal);
 }
 
@@ -471,13 +658,22 @@ function quitarDelCarrito(i) {
 }
 
 function limpiarCarrito() {
-  carrito = [];
-  tipoEntrega = null;
-  // Reset botones de entrega
+  carrito       = [];
+  tipoEntrega   = null;
+  ubicacionPedido = null;
+  ocultarPanelUbicacion();
+  if (mapaLeaflet) { mapaLeaflet.remove(); mapaLeaflet = null; markerLeaflet = null; }
   var btnDom = document.getElementById('btn-domicilio');
   var btnRec = document.getElementById('btn-recoger');
   if (btnDom) btnDom.className = 'entrega-btn';
   if (btnRec) btnRec.className = 'entrega-btn';
+  // Reset botón GPS
+  var btnGps = document.getElementById('btn-mi-ubicacion');
+  if (btnGps) {
+    btnGps.textContent = '📍 Usar mi ubicación';
+    btnGps.disabled = false;
+    btnGps.classList.remove('confirmado');
+  }
   renderCarrito();
 }
 
@@ -486,13 +682,16 @@ function limpiarCarrito() {
 // =============================================
 function enviarPedido() {
   if (!carrito.length || tipoEntrega === null) return;
+  if (tipoEntrega === 'domicilio' && !ubicacionPedido) {
+    alert('Por favor selecciona tu ubicación de entrega en el mapa.');
+    return;
+  }
 
-  var tortas = carrito.filter(function(i) { return i.tipo === 'torta'; });
-  var bebidas = carrito.filter(function(i) { return i.tipo === 'bebida'; });
+  var tortas   = carrito.filter(function(i) { return i.tipo === 'torta'; });
+  var bebidas  = carrito.filter(function(i) { return i.tipo === 'bebida'; });
   var subtotal = carrito.reduce(function(s, i) { return s + i.precio; }, 0);
-  var envio = tipoEntrega === 'domicilio' ? COSTO_ENVIO : 0;
+  var envio    = tipoEntrega === 'domicilio' ? COSTO_ENVIO : 0;
 
-  // Guardar en Google Sheets automáticamente
   guardarEnSheets(tortas, bebidas, subtotal, envio, subtotal + envio, tipoEntrega);
 
   var lineas = ["Pedido - Tortas Tre'mendas", ""];
@@ -518,6 +717,7 @@ function enviarPedido() {
   lineas.push('');
   if (tipoEntrega === 'domicilio') {
     lineas.push('Entrega: A domicilio');
+    if (ubicacionPedido) lineas.push('📍 Entregar aquí: ' + ubicacionPedido.mapsUrl);
     lineas.push('Subtotal: $' + subtotal);
     lineas.push('Envio: $' + COSTO_ENVIO);
     lineas.push('Total: $' + (subtotal + COSTO_ENVIO));
@@ -537,12 +737,8 @@ function enviarPedido() {
 // =============================================
 document.addEventListener('DOMContentLoaded', function() {
   renderMenu();
-
-  // Si la URL tiene ancla al cargar (ej: index.html#horario desde menú), ajustar scroll con offset
-  // Si hay ancla ir a esa sección, si no ir hasta arriba siempre
   verificarHorario();
 
-  // Si la URL tiene #torta-X abrir ese modal
   var hash = window.location.hash;
   if (hash && hash.startsWith('#torta-')) {
     var tortaId = parseInt(hash.replace('#torta-', ''));
@@ -566,11 +762,8 @@ document.addEventListener('DOMContentLoaded', function() {
     link.addEventListener('click', function(e) {
       var href = this.getAttribute('href');
       if (!href) return;
-
-      // Links externos o mailto: dejar pasar normal
       if (href.startsWith('http') || href.startsWith('mailto')) return;
 
-      // Ancla pura (#seccion) en la misma página: scroll suave, sin animación
       if (href.startsWith('#')) {
         e.preventDefault();
         var target = document.querySelector(href);
@@ -582,20 +775,14 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
 
-      // Link con ancla a OTRA página (ej: index.html#horario desde menu.html)
       if (href.includes('.html')) {
         e.preventDefault();
-        var dest = href;
-
-        // Extraer la parte de página sin ancla para comparar
+        var dest      = href;
         var destPagina = dest.split('#')[0];
-
-        // Si la página destino es distinta a la actual → animar slide
         if (destPagina !== paginaActual) {
           document.body.classList.add('page-exit');
           setTimeout(function() { window.location = dest; }, 300);
         } else {
-          // Misma página pero con ancla (ej: index.html#contacto estando en index.html)
           var ancla = dest.split('#')[1];
           if (ancla) {
             var el = document.getElementById(ancla);
